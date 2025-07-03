@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    ></meta>
+
+    <title>
+        Weather App | Check the weather first
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    ></link>
+
+    <link
+        rel="shortcut icon"
+        href="./accets/sun.png"
+        type="image/x-icon"
+    ></link>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></link>
+</head>
+
+<body>
+    <video
+        class="bgVideo"
+        src="./accets/cloudv.mp4"
+        loop="loop"
+        autoplay="autoplay"
+        muted="muted"
+    ></video>
+
+    <div class="main">
+        <div class="mainP1">
+            <input
+                type="text"
+                placeholder="enter city name"
+                class="searchBar"
+                spellcheck="false"
+                id="searchBox"
+                required="required"
+            ></input>
+
+            <button
+                type="submit"
+                class="submitButton"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="mainP5">
+            <div id="suggestions"></div>
+            <div id="errorBox"></div>
+        </div>
+        
+        <div class="mainP2">
+            <img
+            src="./accets/sun.png"
+            alt=""
+            >
+            
+            <div>
+                <h1>20°C</h1>
+                
+                <h2>Karachi</h2>
+            </div>
+        </div>
+        
+        <div class="mainP3">
+            <img
+            src="./accets/humidityImg.png"
+            alt=""
+            >
+            
+            <div>
+                <h1>50%</h1>
+                
+                <h4>humidity</h4>
+            </div>
+        </div>
+        
+        <div class="mainP4">
+            <img
+            src="./accets/windImg.png"
+            alt=""
+            >
+            
+            <div>
+                <h1>50 Km/h</h1>
+                
+                <h4>wind speed</h4>
+            </div>
+        </div>
+    </div>
+        
+        <script src="./app.js"></script>
+    </body>
+    </html>
