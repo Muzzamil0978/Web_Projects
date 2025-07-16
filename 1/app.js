@@ -40,9 +40,9 @@ async function checkWeather(city) {
   console.log(data);
   document.querySelector(".mainP2 h2").innerHTML = data.name;
   document.querySelector(".mainP2 h1").innerHTML =
-    Math.round(data.main.temp) + "°C";
+    (data.main.temp).toFixed(0) + "°C";
   document.querySelector(".mainP3 h1").innerHTML = data.main.humidity + "%";
-  document.querySelector(".mainP4 h1").innerHTML = data.wind.speed + "Km/h";
+  document.querySelector(".mainP4 h1").innerHTML = data.wind.speed + "m/s";
 
   if (data.weather[0].main == "Clouds") {
     weatherIcon.src = "./accets/cloudy-day.png";
@@ -64,7 +64,9 @@ async function checkWeather(city) {
 searchBtn.addEventListener("click", () => {
   checkWeather(searchBox1.value);
 });
-
+searchBox1.addEventListener("enter", () => {
+  checkWeather(searchBox1.value);
+});
 const cities = [
   "Tokyo",
   "Delhi",
@@ -96,6 +98,7 @@ const cities = [
   "Jakarta",
   "Chennai",
   "Lima",
+  "Sindh",
   "Bangkok",
   "Seoul",
   "Nagoya",
@@ -317,7 +320,9 @@ searchBox.addEventListener("input", () => {
     suggestionsBox.appendChild(div);
   });
 });
-
+document.addEventListener("click", (e) => {
+  checkWeather(searchBox1.value);
+});
 document.addEventListener("click", (e) => {
   if (e.target !== searchBox) suggestionsBox.innerHTML = "";
 });

@@ -468,19 +468,21 @@ body .main {
   .mainP2 h1 {
     font-size: 80px;
     font-weight: 700;
-    color: rgba(128, 128, 128, 0.678);
+    color: rgba(31, 31, 31, 0.679);
   }
 
   .mainP2 h2 {
     font-size: 30px;
     font-weight: 300;
-    color: rgba(128, 128, 128, 0.678);
+    color: rgba(31, 31, 31, 0.679);
+
   }
 
   .main .mainP3 {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   .mainP3 img {
@@ -490,20 +492,23 @@ body .main {
 
   .mainP3 div h1 {
     font-size: 1.5em;
-    color: rgba(128, 128, 128, 0.678);
+    color: rgba(31, 31, 31, 0.679);
+
     font-weight: 600;
   }
 
   .mainP3 div h4 {
     font-size: 1em;
-    color: rgba(128, 128, 128, 0.678);
+    color: rgba(31, 31, 31, 0.679);
+
     font-weight: 400;
   }
 
   .main .mainP4 {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   .mainP4 img {
@@ -513,13 +518,15 @@ body .main {
 
   .mainP4 div h1 {
     font-size: 1.5em;
-    color: rgba(128, 128, 128, 0.678);
+    color: rgba(31, 31, 31, 0.679);
+
     font-weight: 600;
   }
 
   .mainP4 div h4 {
     font-size: 1em;
-    color: rgba(128, 128, 128, 0.678);
+    color: rgba(31, 31, 31, 0.679);
+
     font-weight: 400;
   }
 
