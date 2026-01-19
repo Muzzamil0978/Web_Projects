@@ -20,12 +20,17 @@ body {
   height: 150%;
   position: fixed;
   z-index: -2;
+  /* width: 100vw;
+  flex-grow: 122; */
+  /* position:fixed;  */
+  /* left: 5px; */
+
 }
 
 body .main {
   height: 90vh;
   width: 70vw;
-  background-color: rgba(255, 255, 255, 0.614);
+  background-color: rgba(255, 255, 255, 0.374);
   border-radius: 40px;
   border-top-left-radius: 0;
   position: relative;
@@ -141,7 +146,7 @@ body .main {
   }
 
   100% {
-    transform: translateY(-3px);
+    transform: translateY(-1px);
   }
 
 }
@@ -181,13 +186,13 @@ body .main {
 .mainP2 h1 {
   font-size: 80px;
   font-weight: 700;
-  color: rgba(128, 128, 128, 0.678);
+  color: rgba(48, 47, 47, 0.596);
 }
 
 .mainP2 h2 {
   font-size: 30px;
   font-weight: 300;
-  color: rgba(128, 128, 128, 0.678);
+  color: rgba(48, 47, 47, 0.596);
 }
 
 .main .mainP3 {
@@ -203,13 +208,13 @@ body .main {
 
 .mainP3 div h1 {
   font-size: 40px;
-  color: rgba(128, 128, 128, 0.678);
+  color: rgba(48, 47, 47, 0.596);
   font-weight: 700;
 }
 
 .mainP3 div h4 {
   font-size: 25px;
-  color: rgba(128, 128, 128, 0.678);
+  color: rgba(48, 47, 47, 0.596);
   font-weight: 500;
 }
 
@@ -226,13 +231,13 @@ body .main {
 
 .mainP4 div h1 {
   font-size: 40px;
-  color: rgba(128, 128, 128, 0.678);
+  color: rgba(48, 47, 47, 0.596);
   font-weight: 700;
 }
 
 .mainP4 div h4 {
   font-size: 25px;
-  color: rgba(128, 128, 128, 0.678);
+  color: rgba(48, 47, 47, 0.596);
   font-weight: 500;
 }
 

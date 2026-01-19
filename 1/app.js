@@ -1,72 +1,125 @@
 const apiKey = "2be63a7dc6040ef838922e823b21c039";
 const apiUrl =
   "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
-
+const apikeyForUserLocation = 'a116cd22616847608e3f1cc7ec6833f6';
+const apiUrlForUserLocation = 'https://api.geoapify.com/v1/geocode/reverse'
 const searchBox1 = document.querySelector(".searchBar");
 const searchBtn = document.querySelector(".submitButton");
 const weatherIcon = document.querySelector(".mainP2 img");
+var lat, lon, userlocation;
 
 document.querySelector(".mainP2 h2").innerHTML = "---";
 document.querySelector(".mainP2 h1").innerHTML = "---";
 document.querySelector(".mainP3 h1").innerHTML = "---";
 document.querySelector(".mainP4 h1").innerHTML = "---";
 
-async function checkWeather(city) {
-  const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-
-  if (response.status == 400) {
-    const typed = searchBox.value.trim().toLowerCase();
-    const match = cities.find((city) => city.toLowerCase() === typed);
-    if (!match) {
-      errorBox.textContent = "❌ City not found. Please try again.";
-    } else {
-      errorBox.textContent = "";
-      suggestionsBox.innerHTML = "";
+if ('geolocation' in navigator) {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      lat = position.coords.latitude
+      lon = position.coords.longitude
+      console.log(lat, lon)
+      userlocationfoo(lat, lon)
+    },
+    (err) => {
+      console.error('error is ====>', err.message)
     }
-  }
-  if (response.status == 404) {
-    const typed = searchBox.value.trim().toLowerCase();
-    const match = cities.find((city) => city.toLowerCase() === typed);
-    if (!match) {
-      errorBox.textContent = "❌ City not found. Please try again.";
-    } else {
-      errorBox.textContent = "";
-      suggestionsBox.innerHTML = "";
+
+  )
+}
+else {
+  console.log('geolocation is not available.')
+}
+
+async function userlocationfoo(lat, lon) {
+
+  //  const result = await fetch(`${apiUrlForUserLocation}?lat=${lat}&lon=${lon}7key=${apikeyForUserLocation}`)
+  // https://api.geoapify.com/v1/geocode/reverse?lat=51.21709661403662&lon=6.7782883744862374&apiKey=a116cd22616847608e3f1cc7ec6833f6
+  // a116cd22616847608e3f1cc7ec6833f6
+  const result = await fetch(`${apiUrlForUserLocation}?lat=${lat}&lon=${lon}&apiKey=${apikeyForUserLocation}`)
+  const re2 = await result.json()
+  console.log(re2)
+  userlocation = re2
+
+
+
+  const city = await userlocation.features[0].properties.county
+  document.addEventListener('load', checkWeather(city))
+  searchBox1.value = city
+}
+async function checkWeather(city = city) {
+  try {
+    try {
+
+      const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+      if (response.status == 400) {
+        const typed = searchBox.value.trim().toLowerCase();
+        const match = cities.find((city) => city.toLowerCase() === typed);
+        if (!match) {
+          errorBox.textContent = "❌ City not found. Please try again.";
+          throw new Error(`Error ====>${response.status}`)
+        } else {
+          errorBox.textContent = "";
+          suggestionsBox.innerHTML = "";
+        }
+      }
+      if (response.status == 404) {
+        const typed = searchBox.value.trim().toLowerCase();
+        const match = cities.find((city) => city.toLowerCase() === typed);
+        if (!match) {
+          errorBox.textContent = "❌ City not found. Please try again.";
+          throw new Error(`Error ====>${response.status}`)
+
+        } else {
+          errorBox.textContent = "";
+          suggestionsBox.innerHTML = "";
+        }
+      }
+
+
+      var data = await response.json();
+    } catch (E) {
+      console.log(E)
     }
-  }
+    console.log(data);
+    document.querySelector(".mainP2 h2").innerHTML = data.name;
+    document.querySelector(".mainP2 h1").innerHTML = (data?.main?.temp ?? 0).toFixed(0) + "°C";
+    document.querySelector(".mainP3 h1").innerHTML = data?.main?.humidity ?? '---' + "%";
+    document.querySelector(".mainP4 h1").innerHTML = data?.wind?.speed ?? '---' + "m/s";
 
-  var data = await response.json();
-
-  console.log(data);
-  document.querySelector(".mainP2 h2").innerHTML = data.name;
-  document.querySelector(".mainP2 h1").innerHTML =
-    (data.main.temp).toFixed(0) + "°C";
-  document.querySelector(".mainP3 h1").innerHTML = data.main.humidity + "%";
-  document.querySelector(".mainP4 h1").innerHTML = data.wind.speed + "m/s";
-
-  if (data.weather[0].main == "Clouds") {
-    weatherIcon.src = "./accets/cloudy-day.png";
-  } else if (data.weather[0].main == "Sunny") {
-    weatherIcon.src = "./accets/sun.png";
-  } else if (data.weather[0].main == "clear") {
-    weatherIcon.src = "./accets/cloudy.png";
-  } else if (data.weather[0].main == "Rain") {
-    weatherIcon.src = "./accets/rainy.png";
-  } else if (data.weather[0].main == "Snow") {
-    weatherIcon.src = "./accets/snow.png";
-  } else if (data.weather[0].main == "Drizzle") {
-    weatherIcon.src = "./accets/drizling.png";
-  } else if (data.weather[0].main == "Thunder Storm") {
-    weatherIcon.src = "./accets/storm.png";
+    if (data?.weather[0]?.main == "Clouds") {
+      weatherIcon.src = "./accets/cloudy-day.png";
+      document.querySelector('video').src = './accets/cloud.mp4'
+    } else if (data?.weather[0]?.main == "Sunny") {
+      weatherIcon.src = "./accets/sun.png";
+      document.querySelector('video').src = './accets/Hailuo_Video_A high-altitude cinematic shot_469381949328924678.mp4'
+    } else if (data?.weather[0]?.main == "clear") {
+      weatherIcon.src = "./accets/sun.png";
+    } else if (data?.weather[0]?.main == "Rain") {
+      weatherIcon.src = "./accets/rainy.png";
+      document.querySelector('video').src = './accets/rain.mp4'
+    } else if (data?.weather[0]?.main == "Snow") {
+      weatherIcon.src = "./accets/snow.png";
+      document.querySelector('video').src = './accets/snowVD.mp4'
+    } else if (data?.weather[0]?.main == "Drizzle") {
+      weatherIcon.src = "./accets/drizling.png";
+      document.querySelector('video').src = '.accets/rain.mp4'
+    } else if (data?.weather[0]?.main == "Thunder Storm") {
+      weatherIcon.src = "./accets/storm.png";
+      document.querySelector('video').src = '.accets/rain.mp4'
+    }
+  } catch (e) {
+    console.log(e)
   }
 }
 
 searchBtn.addEventListener("click", () => {
   checkWeather(searchBox1.value);
 });
-searchBox1.addEventListener("enter", () => {
-  checkWeather(searchBox1.value);
-});
+// searchBox1.addEventListener("enter", () => {
+//   checkWeather(searchBox1.value);
+// });
 const cities = [
   "Tokyo",
   "Delhi",
@@ -321,7 +374,7 @@ searchBox.addEventListener("input", () => {
   });
 });
 document.addEventListener("click", (e) => {
-  checkWeather(searchBox1.value);
+  if (window.innerWidth < 760) checkWeather(searchBox1.value);
 });
 document.addEventListener("click", (e) => {
   if (e.target !== searchBox) suggestionsBox.innerHTML = "";
