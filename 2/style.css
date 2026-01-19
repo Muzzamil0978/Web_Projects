@@ -1,14 +1,218 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Color Palette Definition */
+        :root {
+            /* Light Mode: Brown & White */
+            --bg-main: #ffffff;
+            --bg-secondary: #fdfaf8; 
+            --text-main: #2d241e;   
+            --text-muted: #7d6e65;
+            --accent-brown: #5d4037; /* Deep Cocoa */
+            --border-color: #eaddd3;
+            --post-hover: #fcf9f7;
+        }
 
-body,html{
-    width: 100vw;
-    height:100vh;
-}
+        [data-theme="dark"] {
+            /* Dark Mode: Brown & Black */
+            --bg-main: #0a0a0a;     
+            --bg-secondary: #1a1614; 
+            --text-main: #f5f0ed;   
+            --text-muted: #a39288;
+            --accent-brown: #8d6e63; /* Lighter clay brown for visibility */
+            --border-color: #2c2520;
+            --post-hover: #14110f;
+        }
 
-body{
-    background-color: bisque;
-}
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: background 0.3s ease;
+        }
+
+        #innerBody {
+            display: grid;
+            grid-template-columns: 275px 1fr 350px;
+            max-width: 1250px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        header {
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-brown);
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            padding: 12px 15px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.2s;
+            margin-bottom: 5px;
+        }
+
+        .nav-links li:hover {
+            background: var(--bg-secondary);
+            color: var(--accent-brown);
+        }
+
+        /* Toggle Switch */
+        .theme-control {
+            margin-top: 30px;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .switch input { opacity: 0; width: 0; height: 0; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--text-muted);
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px; width: 14px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider { background-color: var(--accent-brown); }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        /* Main Feed */
+        main {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .feed-header {
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .create-post {
+            padding: 20px;
+            display: flex;
+            gap: 15px;
+            border-bottom: 8px solid var(--bg-secondary);
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-brown);
+            flex-shrink: 0;
+        }
+
+        .post-input-area {
+            flex: 1;
+        }
+
+        textarea {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            resize: none;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        .post-btn {
+            background: var(--accent-brown);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            float: right;
+        }
+
+        /* Post Card */
+        .post {
+            padding: 20px;
+            display: flex;
+            gap: 15px;
+            border-bottom: 1px solid var(--border-color);
+            transition: 0.3s;
+        }
+
+        .post:hover { background-color: var(--post-hover); }
+
+        .post-body strong { margin-right: 5px; }
+        .post-body span { color: var(--text-muted); font-size: 0.9rem; }
+        .post-text { margin-top: 5px; line-height: 1.5; }
+
+        .post-actions {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            max-width: 400px;
+        }
+
+        .post-actions i:hover { color: var(--accent-brown); cursor: pointer; }
+
+        /* Right Sidebar */
+        .right-sidebar { padding: 20px; }
+
+        .trending {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .trend-item { margin: 15px 0; }
+        .trend-item p { font-weight: bold; }
+        .trend-item small { color: var(--text-muted); }

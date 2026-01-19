@@ -3,12 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Portfolio | Premium Gateway</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #030712;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Subtle background animation */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: -1;
+            top: 10%;
+            left: 10%;
+        }
+
+        h1 {
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 3rem;
+            color: #94a3b8;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .project-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+
+        /* The Live Preview Portal */
+        .preview-portal {
+            position: absolute;
+            right: -380px; /* Positions to the right */
+            top: 50%;
+            transform: translateY(-50%) scale(0.9) rotateY(-10deg);
+            width: 340px;
+            height: 220px;
+            background: black;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        /* Embedding the actual site */
+        .preview-portal iframe {
+            width: 1280px; /* High res internal width */
+            height: 800px;
+            transform: scale(0.265); /* Shrink it to fit the box */
+            transform-origin: 0 0;
+            border: none;
+        }
+
+        /* Hover States */
+        .project-card:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateX(10px);
+        }
+
+        .project-card:hover .preview-portal {
+            opacity: 1;
+            transform: translateY(-50%) scale(1) rotateY(0deg);
+            right: -360px;
+        }
+
+        /* Decorative arrow */
+        .project-card::after {
+            content: "↗";
+            margin-left: auto;
+            opacity: 0.3;
+            transition: 0.3s;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+            transform: translate(3px, -3px);
+            color: var(--primary);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 900px) {
+            .preview-portal {
+                display: none; /* Hide preview on small mobile screens for better UX */
+            }
+        }
+    </style>
 </head>
 <body>
-    <a href="./1/index.html">weather application</a>
-    <a href="./2/index.html">sovera | social media website </a>
-    <a href="./Assignment1/index.html">Assignment1</a>
-    <a href="./Assignment2/index.html">Assignment2</a>
+
+    <h1>Selected Projects</h1>
+
+    <div class="links-container">
+        
+        <a href="./1/index.html" target="_blank" class="project-card">
+            <span>Weather Application</span>
+            <div class="preview-portal">
+                <iframe src="./1/index.html" scrolling="no"></iframe>
+            </div>
+        </a>
+
+        <a href="./2/index.html" target="_blank" class="project-card">
+            <span>Sovera Social Platform</span>
+            <div class="preview-portal">
+                <iframe src="./2/index.html" scrolling="no"></iframe>
+            </div>
+        </a>
+
+    </div>
+
 </body>
 </html>

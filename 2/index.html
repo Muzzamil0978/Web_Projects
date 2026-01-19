@@ -3,19 +3,79 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Sovera|Quality in Command.</title>
-    <link href="./assets/unnamed (4)4.png"
-          rel="shortcut icon"
-          type="image/x-icon" />
+    <title>Sovera | Quality in Command.</title>
     <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="./assets/unnamed (4)4.png" type="image/x-icon">
+
 </head>
 <body>
     <div id="innerBody">
-        <header></header>
-        <main></main>
-        <footer></footer>
+        <header>
+            <div class="logo">Sovera</div>
+            <ul class="nav-links">
+                <li><i class='bx bxs-home-circle'></i> <span>Home</span></li>
+                <li><i class='bx bx-hash'></i> <span>Explore</span></li>
+                <li><i class='bx bx-bell'></i> <span>Notifications</span></li>
+                <li><i class='bx bx-user'></i> <span>Profile</span></li>
+            </ul>
+
+            <div class="theme-control">
+                <span><i class='bx bx-moon'></i> Dark</span>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </header>
+
+        <main>
+            <div class="feed-header">
+                <h2>Home</h2>
+            </div>
+
+            <div class="create-post">
+                <div class="avatar"></div>
+                <div class="post-input-area">
+                    <textarea rows="2" placeholder="What's on your mind?"></textarea>
+                    <button class="post-btn">Post</button>
+                </div>
+            </div>
+
+            <div id="feed">
+                <div class="post">
+                    <div class="avatar"></div>
+                    <div class="post-body">
+                        <strong>Sovera Team</strong> <span>@sovera_hq · 12m</span>
+                        <p class="post-text">Welcome to the future of quality command. Switch to dark mode to see the Brown & Black aesthetic!</p>
+                        <div class="post-actions">
+                            <i class='bx bx-comment'></i>
+                            <i class='bx bx-repost'></i>
+                            <i class='bx bx-heart'></i>
+                            <i class='bx bx-share'></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="trending">
+                <h3>Trends for you</h3>
+                <div class="trend-item">
+                    <small>Trending in UI</small>
+                    <p>#BrownAesthetic</p>
+                </div>
+                <div class="trend-item">
+                    <small>Technology</small>
+                    <p>#QualityInCommand</p>
+                </div>
+            </div>
+        </aside>
     </div>
-    <script src=""></script>
-    <script type="module" src=""></script>
+
+    <script src="app.js">
+
+    </script>
 </body>
 </html>
