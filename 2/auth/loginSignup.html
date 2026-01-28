@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sovera | Professional Auth</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="./loginSignup.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap" rel="stylesheet" />
+    <link href="../assets/unnamed (4)4.png" rel="shortcut icon" type="image/x-icon" />
+</head>
+
+<body>
+    <div class="main-frame" id="frame">
+        <div class="side-panel" id="side-panel-signup">
+            <img class="logo-img" src="../assets/unnamed (4)4.png" />
+            <h1>Quality In Command</h1>
+        </div>
+        <div class="side-panel" id="side-panel-login">
+            <img class="logo-img" src="../assets/unnamed (4)4.png" />
+            <h1>Quality In Command</h1>
+        </div>
+
+        <div class="form-card">
+            <div class="form-track">
+                <div class="form-view" id="loginView">
+                    <h2 class="h2">Login In</h2>
+
+                    <div class="input-group" id="lE">
+                        <input class="input-field" id="lemail" placeholder=" " type="email" />
+                        <label class="input-label">Email</label>
+                        <span class="error-msg">
+                            Please enter a valid email
+                        </span>
+                    </div>
+
+                    <div class="input-group" id="lP">
+                        <input class="input-field" id="lpass" placeholder=" " type="password" />
+                        <label class="input-label">Password</label>
+                        <span class="eye-toggle" id="passwordControl">
+                            Show
+                        </span>
+                        <span class="error-msg">Password is required</span>
+                        <span id='invalidInput'>
+                            <span class="error-msg2">Invalid Email Or Password.</span>
+                        </span>
+                    </div>
+
+                    <button class="btn-main" id="validateLog">Login</button>
+                    <p class="switch-link" style="color: white;">
+                        New?
+                        <b id="signupTrigger">Sign Up</b>
+                    </p>
+                </div>
+
+                <div class="form-view" id="signupView">
+                    <h2 class="h2">Sign Up</h2>
+
+                    <div class="input-group" id="sU">
+                        <input class="input-field" id="suser" placeholder=" " type="text" />
+                        <label class="input-label">Full Name</label>
+                        <span class="error-msg">Name is required</span>
+                    </div>
+
+                    <div class="input-group" id="sE">
+                        <input class="input-field" id="semail" placeholder=" " type="email" />
+                        <label class="input-label">Email</label>
+                        <span class="error-msg" id="sEe">Valid email required</span>
+                        
+                    </div>
+
+                    <div class="input-group" id="sP">
+                        <input class="input-field" id="spass" placeholder=" " type="password" />
+                        <label class="input-label">Password</label>
+                        <span class="eye-toggle" id="passwordControl2">
+                            Show
+                        </span>
+                        <span class="error-msg">Minimum 8 characters</span>
+                    </div>
+                    <div class="meter">
+                        <div class="meter-bar" id="mbar"></div>
+                    </div>
+                    <span id="invalidInput">
+
+
+                        <div style="margin-bottom: 15px; display: flex; gap: 8px; align-items: center;">
+                            <input id="terms" type="checkbox" />
+                            <div id="termsBox">
+                                <label for="terms" style="font-size: 12px; color: #fffafa;">
+                                    I agree to Terms & Condition .
+                                </label>
+                                <span class="error-msg">
+                                    Please Agree Terms and Conditions
+                                </span>
+                            </div>
+                        </div>
+
+                        <button class="btn-main" id="validateSignup">
+                            Create Account
+                        </button>
+                        <p class="switch-link" style="color: white;">
+                            Member?
+                            <b id="loginTrigger">Log In</b>
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./loginSignup.js" type="module"></script>
+</body>
+
+</html>

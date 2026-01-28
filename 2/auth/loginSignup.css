@@ -1,0 +1,1154 @@
+  :root {
+      --accent-brown: #5d4037;
+      --accent-light-brown: #423430;
+      --error-red: #8a0000;
+      --bg-dark: #0a0a0a;
+      --text-muted: #94a3b8;
+  }
+
+  /* Prevent Scroll */
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+  }
+
+  html,
+  body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: var(--bg-dark);
+  }
+
+  body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+  }
+
+  .main-frame {
+      position: relative;
+      width: 1000px;
+      height: 620px;
+      background: linear-gradient(45deg, #000000, var(--accent-light-brown), #000);
+      border-radius: 40px;
+      display: flex;
+      box-shadow: 0 50px 100px #5d4037;
+  }
+
+  .side-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fffefe;
+  }
+
+  .side-panel h1 {
+      font-size: 50px;
+      font-family: "Bonheur Royale", cursive;
+      font-style: normal;
+      font-weight: 300;
+  }
+
+  .logo-img {
+      width: 50%;
+      height: 50%;
+      background: #ffffff00;
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 20px;
+  }
+
+  /* THE SLIDING CARD */
+  .form-card {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 480px;
+      height: calc(100% - 40px);
+      background: linear-gradient(45deg, var(--accent-light-brown), #ffffff);
+      border-radius: 30px;
+      z-index: 10;
+      padding: 40px 50px;
+      transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+      overflow: hidden;
+  }
+
+  .signup-active .form-card {
+      left: 500px;
+  }
+
+  .form-track {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+  }
+
+  .h2 {
+      margin-bottom: 25px;
+      font-size: 50px;
+      font-family: 'Bonheur Royale', cursive, 'sans-serif';
+      font-style: normal;
+      font-weight: 400;
+      color: #ffffff;
+      box-shadow: #423430 0px -23px 25px 0px inset, rgba(252, 252, 252, 0.285) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.566) 0px -79px 40px 0px inset, #564c49ac 0px 2px 1px, rgba(0, 0, 0, 0.509) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.16) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+      width: 160px;
+      text-align: center;
+      border-radius: 20px;
+  }
+
+  .signup-active .form-track {
+      transform: translateX(-50%);
+  }
+
+  .form-view {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      transition: opacity 0.4s;
+  }
+
+  #loginView {
+      opacity: 1;
+  }
+
+  #signupView {
+      opacity: 0;
+      pointer-events: none;
+  }
+
+  .signup-active #loginView {
+      opacity: 0;
+      pointer-events: none;
+  }
+
+  .signup-active #signupView {
+      opacity: 1;
+      pointer-events: all;
+  }
+
+  /* INPUTS - FIXED OVERLAP */
+  .input-group {
+      position: relative;
+      margin-bottom: 30px;
+      /* Fixed space for error message */
+  }
+
+  .input-field {
+      width: 100%;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      background: white;
+      outline: none;
+      font-size: 15px;
+      transition: border-color 0.2s;
+  }
+
+  .input-label {
+      position: absolute;
+      left: 14px;
+      top: 18px;
+      color: var(--text-muted);
+      background: white;
+      padding: 0 6px;
+      transition: 0.2s ease;
+      z-index: 5;
+      border-radius: 50px;
+      font-size: medium;
+  }
+
+  /* Floating Logic */
+  .input-field:focus~.input-label,
+  .input-field:not(:placeholder-shown)~.input-label {
+      transform: translateY(-26px) scale(0.8);
+      color: var(--accent-brown);
+      font-weight: 600;
+      font-size: large;
+  }
+
+  /* SIMPLE EYE BUTTON */
+  .eye-toggle {
+      position: absolute;
+      right: 15px;
+      top: 18px;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--accent-brown);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      user-select: none;
+  }
+
+  /* ERROR MESSAGE - ABSOLUTE POSITIONING */
+  .error-msg , .error-msg2 {
+      position: absolute;
+      top: 58px;
+      left: 4px;
+      font-size: 13px;
+      color: var(--error-red);
+      font-weight: 500;
+      display: none;
+  }
+
+  #invalidInput .error-msg2  {
+      margin-top: 20px;
+      /* bottom: -40px; */
+  }
+#invalidInput{
+    margin-bottom: 20px;
+    display: block;
+    /* position: relative; */
+}
+  .error .input-field {
+      border-color: var(--error-red);
+  }
+
+  #termsBox {
+      /* height: 20px;  */
+      display: flex;
+      align-items: baseline;
+      width: 100%;
+      margin-bottom: 25px;
+      position: relative;
+  }
+
+  #termsBox label {
+      position: absolute;
+      top: 6px;
+  }
+
+  #termsBox span {
+      left: 0;
+      top: 20px;
+  }
+
+  .error .error-msg ,.error2 .error-msg2{
+      display: inline-block;
+  }
+
+  /* METER & BUTTONS */
+  .meter {
+      height: 4px;
+      background: #eee;
+      border-radius: 2px;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      overflow: hidden;
+  }
+
+  .meter-bar {
+      height: 100%;
+      width: 0%;
+      transition: 0.3s;
+  }
+
+  .btn-main {
+      background: var(--accent-brown);
+      color: white;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      width: 100%;
+  }
+
+  .btn-main:hover {
+      opacity: 0.9;
+  }
+
+  .switch-link {
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 15px;
+  }
+
+  .switch-link b {
+      color: var(--accent-brown);
+      cursor: pointer;
+      text-decoration: underline;
+  }
+
+
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (max-width: 700px) {
+      .main-frame {
+          position: relative;
+          width: 1000px;
+          height: auto;
+          min-height: 100vh;
+          /* Or make it fill the whole screen */
+          border-radius: 0;
+          background: linear-gradient(45deg, #000000, var(--accent-light-brown), #000);
+          display: flex;
+          box-shadow: 0 50px 100px #5d4037;
+      }
+
+      .side-panel {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: #fffefe;
+      }
+
+      .h2 {
+          margin-bottom: 25px;
+          font-size: 80px;
+          font-family: 'Bonheur Royale', cursive, 'sans-serif';
+          font-style: normal;
+          font-weight: 200;
+          color: #ffffff;
+          box-shadow: #423430 0px -23px 25px 0px inset, rgba(252, 252, 252, 0.285) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.566) 0px -79px 40px 0px inset, #564c49ac 0px 2px 1px, rgba(0, 0, 0, 0.509) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.16) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+          width: 100%;
+          text-align: center;
+          border-radius: 20px;
+      }
+
+      .side-panel h1 {
+          font-size: 50px;
+          font-family: "Bonheur Royale", cursive;
+          font-style: normal;
+          font-weight: 300;
+          display: none;
+      }
+
+      .logo-img {
+          width: 50%;
+          height: 50%;
+          background: #ffffff00;
+          border-radius: 15px;
+          padding: 10px;
+          margin-bottom: 20px;
+          display: none;
+      }
+
+      /* THE SLIDING CARD */
+      .form-card {
+          position: absolute;
+          top: 20px;
+          left: 25px;
+          width: calc(100% - 50px);
+          height: calc(100% - 50px);
+          background: linear-gradient(45deg, var(--accent-light-brown), #ffffff);
+          border-radius: 30px;
+          z-index: 10;
+          padding: 10px 10px;
+          transition: none;
+          overflow: hidden;
+      }
+
+      .signup-active .form-card {
+          left: 25px;
+      }
+
+      .form-track {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          position: relative;
+          transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+      }
+
+      .signup-active .form-track {
+          transform: none;
+      }
+
+      .form-view {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          transition: opacity 0.4s;
+      }
+
+      #loginView {
+          opacity: 1;
+          display: flex;
+      }
+
+      #signupView {
+          opacity: 0;
+          display: none;
+          pointer-events: none;
+      }
+
+      .signup-active #loginView {
+          opacity: 0;
+          display: none;
+          pointer-events: none;
+      }
+
+      .signup-active #signupView {
+          opacity: 1;
+          display: flex;
+          pointer-events: all;
+      }
+
+      /* INPUTS - FIXED OVERLAP */
+      .input-group {
+          /* width: calc(100vw - 150px); */
+          width: 100%;
+          position: relative;
+          margin-bottom: 30px;
+          /* Fixed space for error message */
+      }
+
+      .input-field {
+          width: 100%;
+          border: 1.5px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 16px;
+          background: white;
+          outline: none;
+          font-size: 15px;
+          transition: border-color 0.2s;
+      }
+
+      .input-label {
+          position: absolute;
+          left: 14px;
+          top: 18px;
+          color: var(--text-muted);
+          background: white;
+          padding: 0 6px;
+          transition: 0.2s ease;
+          z-index: 5;
+          border-radius: 50px;
+          font-size: medium;
+      }
+
+      /* Floating Logic */
+      .input-field:focus~.input-label,
+      .input-field:not(:placeholder-shown)~.input-label {
+          transform: translateY(-26px) scale(0.8);
+          color: var(--accent-brown);
+          font-weight: 600;
+          font-size: large;
+      }
+
+      /* SIMPLE EYE BUTTON */
+      .eye-toggle {
+          position: absolute;
+          right: 15px;
+          top: 18px;
+          font-size: 12px;
+          font-weight: bold;
+          color: var(--accent-brown);
+          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          user-select: none;
+      }
+
+      /* ERROR MESSAGE - ABSOLUTE POSITIONING */
+      .error-msg {
+          position: absolute;
+          bottom: -18px;
+          left: 4px;
+          font-size: 13px;
+          color: var(--error-red);
+          font-weight: 500;
+          display: none;
+      }
+
+      .error .input-field {
+          border-color: var(--error-red);
+      }
+
+      .error .error-msg {
+          display: block;
+      }
+
+      /* METER & BUTTONS */
+      .meter {
+          height: 4px;
+          background: #eee;
+          border-radius: 2px;
+          margin-top: -10px;
+          margin-bottom: 15px;
+          overflow: hidden;
+      }
+
+      .meter-bar {
+          height: 100%;
+          width: 0%;
+          transition: 0.3s;
+      }
+
+      .btn-main {
+          background: var(--accent-brown);
+          color: white;
+          padding: 16px;
+          border: none;
+          border-radius: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: opacity 0.2s;
+      }
+
+      .btn-main:hover {
+          opacity: 0.9;
+      }
+
+      .switch-link {
+          text-align: center;
+          font-size: 13px;
+          color: #64748b;
+          margin-top: 15px;
+      }
+
+      .switch-link b {
+          color: var(--accent-brown);
+          cursor: pointer;
+          text-decoration: underline;
+      }
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+      .main-frame {
+          position: relative;
+          width: calc(100vw - 50px);
+          height: calc(100vh - 50px);
+          background: linear-gradient(45deg, #000000, var(--accent-light-brown), #000);
+          border-radius: 40px;
+          display: flex;
+          box-shadow: 0 50px 100px #5d4037;
+      }
+
+      .side-panel {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: #fffefe;
+      }
+
+      .side-panel h1 {
+          font-size: 50px;
+          font-family: "Bonheur Royale", cursive;
+          font-style: normal;
+          font-weight: 300;
+      }
+
+      .logo-img {
+          width: 50%;
+          height: 30%;
+          background: #ffffff00;
+          border-radius: 15px;
+          padding: 10px;
+          margin-bottom: 20px;
+      }
+
+      /* THE SLIDING CARD */
+      .form-card {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          width: 350px;
+          height: calc(100% - 40px);
+          background: linear-gradient(45deg, var(--accent-light-brown), #ffffff);
+          border-radius: 30px;
+          z-index: 10;
+          padding: 40px 50px;
+          transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+          overflow: hidden;
+      }
+
+      .signup-active .form-card {
+          left: calc(100vw - 400px);
+      }
+
+      .form-track {
+          display: flex;
+          width: 200%;
+          height: 100%;
+          transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+      }
+
+      .signup-active .form-track {
+          transform: translateX(-50%);
+      }
+
+      .form-view {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          transition: opacity 0.4s;
+      }
+
+      #loginView {
+          opacity: 1;
+      }
+
+      #signupView {
+          opacity: 0;
+          pointer-events: none;
+      }
+
+      .signup-active #loginView {
+          opacity: 0;
+          pointer-events: none;
+      }
+
+      .signup-active #signupView {
+          opacity: 1;
+          pointer-events: all;
+      }
+
+      /* INPUTS - FIXED OVERLAP */
+      .input-group {
+          position: relative;
+          margin-bottom: 30px;
+          /* Fixed space for error message */
+      }
+
+      .input-field {
+          width: 100%;
+          border: 1.5px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 16px;
+          background: white;
+          outline: none;
+          font-size: 15px;
+          transition: border-color 0.2s;
+      }
+
+      .input-label {
+          position: absolute;
+          left: 14px;
+          top: 18px;
+          color: var(--text-muted);
+          background: white;
+          padding: 0 6px;
+          transition: 0.2s ease;
+          z-index: 5;
+          border-radius: 50px;
+          font-size: medium;
+      }
+
+      /* Floating Logic */
+      .input-field:focus~.input-label,
+      .input-field:not(:placeholder-shown)~.input-label {
+          transform: translateY(-26px) scale(0.8);
+          color: var(--accent-brown);
+          font-weight: 600;
+          font-size: large;
+      }
+
+      /* SIMPLE EYE BUTTON */
+      .eye-toggle {
+          position: absolute;
+          right: 15px;
+          top: 18px;
+          font-size: 12px;
+          font-weight: bold;
+          color: var(--accent-brown);
+          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          user-select: none;
+      }
+
+      /* ERROR MESSAGE - ABSOLUTE POSITIONING */
+      .error-msg {
+          position: absolute;
+          bottom: -18px;
+          left: 4px;
+          font-size: 13px;
+          color: var(--error-red);
+          font-weight: 500;
+          display: none;
+      }
+
+      .error .input-field {
+          border-color: var(--error-red);
+      }
+
+      .error .error-msg {
+          display: block;
+      }
+
+      /* METER & BUTTONS */
+      .meter {
+          height: 4px;
+          background: #eee;
+          border-radius: 2px;
+          margin-top: -10px;
+          margin-bottom: 15px;
+          overflow: hidden;
+      }
+
+      .meter-bar {
+          height: 100%;
+          width: 0%;
+          transition: 0.3s;
+      }
+
+      .btn-main {
+          background: var(--accent-brown);
+          color: white;
+          padding: 16px;
+          border: none;
+          border-radius: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: opacity 0.2s;
+      }
+
+      .btn-main:hover {
+          opacity: 0.9;
+      }
+
+      .switch-link {
+          text-align: center;
+          font-size: 13px;
+          color: #64748b;
+          margin-top: 15px;
+      }
+
+      .switch-link b {
+          color: var(--accent-brown);
+          cursor: pointer;
+          text-decoration: underline;
+      }
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+      .main-frame {
+          position: relative;
+          width: 1000px;
+          height: 620px;
+          background: linear-gradient(45deg, #000000, var(--accent-light-brown), #000);
+          border-radius: 40px;
+          display: flex;
+          box-shadow: 0 50px 100px #5d4037;
+      }
+
+      .side-panel {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: #fffefe;
+      }
+
+      .side-panel h1 {
+          font-size: 50px;
+          font-family: "Bonheur Royale", cursive;
+          font-style: normal;
+          font-weight: 300;
+      }
+
+      .logo-img {
+          width: 50%;
+          height: 50%;
+          background: #ffffff00;
+          border-radius: 15px;
+          padding: 10px;
+          margin-bottom: 20px;
+      }
+
+      /* THE SLIDING CARD */
+      .form-card {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          width: 480px;
+          height: calc(100% - 40px);
+          background: linear-gradient(45deg, var(--accent-light-brown), #ffffff);
+          border-radius: 30px;
+          z-index: 10;
+          padding: 40px 50px;
+          transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+          overflow: hidden;
+      }
+
+      .signup-active .form-card {
+          left: 500px;
+      }
+
+      .form-track {
+          display: flex;
+          width: 200%;
+          height: 100%;
+          transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+      }
+
+      .signup-active .form-track {
+          transform: translateX(-50%);
+      }
+
+      .form-view {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          transition: opacity 0.4s;
+      }
+
+      #loginView {
+          opacity: 1;
+      }
+
+      #signupView {
+          opacity: 0;
+          pointer-events: none;
+      }
+
+      .signup-active #loginView {
+          opacity: 0;
+          pointer-events: none;
+      }
+
+      .signup-active #signupView {
+          opacity: 1;
+          pointer-events: all;
+      }
+
+      /* INPUTS - FIXED OVERLAP */
+      .input-group {
+          position: relative;
+          margin-bottom: 30px;
+          /* Fixed space for error message */
+      }
+
+      .input-field {
+          width: 100%;
+          border: 1.5px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 16px;
+          background: white;
+          outline: none;
+          font-size: 15px;
+          transition: border-color 0.2s;
+      }
+
+      .input-label {
+          position: absolute;
+          left: 14px;
+          top: 18px;
+          color: var(--text-muted);
+          background: white;
+          padding: 0 6px;
+          transition: 0.2s ease;
+          z-index: 5;
+          border-radius: 50px;
+          font-size: medium;
+      }
+
+      /* Floating Logic */
+      .input-field:focus~.input-label,
+      .input-field:not(:placeholder-shown)~.input-label {
+          transform: translateY(-26px) scale(0.8);
+          color: var(--accent-brown);
+          font-weight: 600;
+          font-size: large;
+      }
+
+      /* SIMPLE EYE BUTTON */
+      .eye-toggle {
+          position: absolute;
+          right: 15px;
+          top: 18px;
+          font-size: 12px;
+          font-weight: bold;
+          color: var(--accent-brown);
+          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          user-select: none;
+      }
+
+      /* ERROR MESSAGE - ABSOLUTE POSITIONING */
+      .error-msg {
+          position: absolute;
+          bottom: -18px;
+          left: 4px;
+          font-size: 13px;
+          color: var(--error-red);
+          font-weight: 500;
+          display: none;
+      }
+
+      .error .input-field {
+          border-color: var(--error-red);
+      }
+
+      .error .error-msg {
+          display: block;
+      }
+
+      /* METER & BUTTONS */
+      .meter {
+          height: 4px;
+          background: #eee;
+          border-radius: 2px;
+          margin-top: -10px;
+          margin-bottom: 15px;
+          overflow: hidden;
+      }
+
+      .meter-bar {
+          height: 100%;
+          width: 0%;
+          transition: 0.3s;
+      }
+
+      .btn-main {
+          background: var(--accent-brown);
+          color: white;
+          padding: 16px;
+          border: none;
+          border-radius: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: opacity 0.2s;
+      }
+
+      .btn-main:hover {
+          opacity: 0.9;
+      }
+
+      .switch-link {
+          text-align: center;
+          font-size: 13px;
+          color: #64748b;
+          margin-top: 15px;
+      }
+
+      .switch-link b {
+          color: var(--accent-brown);
+          cursor: pointer;
+          text-decoration: underline;
+      }
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+      .main-frame {
+          position: relative;
+          width: 1000px;
+          height: 620px;
+          background: linear-gradient(45deg, #000000, var(--accent-light-brown), #000);
+          border-radius: 40px;
+          display: flex;
+          box-shadow: 0 50px 100px #5d4037;
+      }
+
+      .side-panel {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: #fffefe;
+      }
+
+      .side-panel h1 {
+          font-size: 50px;
+          font-family: "Bonheur Royale", cursive;
+          font-style: normal;
+          font-weight: 300;
+      }
+
+      .logo-img {
+          width: 50%;
+          height: 50%;
+          background: #ffffff00;
+          border-radius: 15px;
+          padding: 10px;
+          margin-bottom: 20px;
+      }
+
+      /* THE SLIDING CARD */
+      .form-card {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          width: 480px;
+          height: calc(100% - 40px);
+          background: linear-gradient(45deg, var(--accent-light-brown), #ffffff);
+          border-radius: 30px;
+          z-index: 10;
+          padding: 40px 50px;
+          transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+          overflow: hidden;
+      }
+
+      .signup-active .form-card {
+          left: 500px;
+      }
+
+      .form-track {
+          display: flex;
+          width: 200%;
+          height: 100%;
+          transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+      }
+
+      .signup-active .form-track {
+          transform: translateX(-50%);
+      }
+
+      .form-view {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          transition: opacity 0.4s;
+      }
+
+      #loginView {
+          opacity: 1;
+      }
+
+      #signupView {
+          opacity: 0;
+          pointer-events: none;
+      }
+
+      .signup-active #loginView {
+          opacity: 0;
+          pointer-events: none;
+      }
+
+      .signup-active #signupView {
+          opacity: 1;
+          pointer-events: all;
+      }
+
+      /* INPUTS - FIXED OVERLAP */
+      .input-group {
+          position: relative;
+          margin-bottom: 30px;
+          /* Fixed space for error message */
+      }
+
+      .input-field {
+          width: 100%;
+          border: 1.5px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 16px;
+          background: white;
+          outline: none;
+          font-size: 15px;
+          transition: border-color 0.2s;
+      }
+
+      .input-label {
+          position: absolute;
+          left: 14px;
+          top: 18px;
+          color: var(--text-muted);
+          background: white;
+          padding: 0 6px;
+          transition: 0.2s ease;
+          z-index: 5;
+          border-radius: 50px;
+          font-size: medium;
+      }
+
+      /* Floating Logic */
+      .input-field:focus~.input-label,
+      .input-field:not(:placeholder-shown)~.input-label {
+          transform: translateY(-26px) scale(0.8);
+          color: var(--accent-brown);
+          font-weight: 600;
+          font-size: large;
+      }
+
+      /* SIMPLE EYE BUTTON */
+      .eye-toggle {
+          position: absolute;
+          right: 15px;
+          top: 18px;
+          font-size: 12px;
+          font-weight: bold;
+          color: var(--accent-brown);
+          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          user-select: none;
+      }
+
+      /* ERROR MESSAGE - ABSOLUTE POSITIONING */
+      .error-msg {
+          position: absolute;
+          bottom: -18px;
+          left: 4px;
+          font-size: 13px;
+          color: var(--error-red);
+          font-weight: 500;
+          display: none;
+      }
+
+      .error .input-field {
+          border-color: var(--error-red);
+      }
+
+      .error .error-msg {
+          display: block;
+      }
+
+      /* METER & BUTTONS */
+      .meter {
+          height: 4px;
+          background: #eee;
+          border-radius: 2px;
+          margin-top: -10px;
+          margin-bottom: 15px;
+          overflow: hidden;
+      }
+
+      .meter-bar {
+          height: 100%;
+          width: 0%;
+          transition: 0.3s;
+      }
+
+      .btn-main {
+          background: var(--accent-brown);
+          color: white;
+          padding: 16px;
+          border: none;
+          border-radius: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: opacity 0.2s;
+      }
+
+      .btn-main:hover {
+          opacity: 0.9;
+      }
+
+      .switch-link {
+          text-align: center;
+          font-size: 13px;
+          color: #64748b;
+          margin-top: 15px;
+      }
+
+      .switch-link b {
+          color: var(--accent-brown);
+          cursor: pointer;
+          text-decoration: underline;
+      }
+  }
+
+  ;
